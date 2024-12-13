@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "why_abc_waas.card_1.title_1",
+    "description": "why_abc_waas.card_1.description_1"
+  },
+  {
+    "id": 2,
+    "title": "why_abc_waas.card_1.title_2",
+    "description": "why_abc_waas.card_1.description_2"
+  },
+  {
+    "id": 3,
+    "title": "why_abc_waas.card_1.title_3",
+    "description": "why_abc_waas.card_1.description_3"
+  },
+  {
+    "id": 4,
+    "title": "why_abc_waas.card_1.title_4",
+    "description": "why_abc_waas.card_1.description_4"
+  }
+]

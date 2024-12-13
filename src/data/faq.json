@@ -1,0 +1,27 @@
+[
+  {
+    "id": "faq_1",
+    "question": "FAQ.questions.question_1",
+    "answer": "FAQ.questions.answer_1"
+  },
+  {
+    "id": "faq_2",
+    "question": "FAQ.questions.question_2",
+    "answer": "FAQ.questions.answer_2"
+  },
+  {
+    "id": "faq_3",
+    "question": "FAQ.questions.question_3",
+    "answer": "FAQ.questions.answer_3"
+  },
+  {
+    "id": "faq_4",
+    "question": "FAQ.questions.question_4",
+    "answer": "FAQ.questions.answer_4"
+  },
+  {
+    "id": "faq_5",
+    "question": "FAQ.questions.question_5",
+    "answer": "FAQ.questions.answer_5"
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "top": {
+    "title": "Build Web3 With Us"
+  },
+  "why_abc_waas": {
+    "title": "Why ABC WaaS?",
+    "card_1": {
+      "title_1": "Simple Onboarding",
+      "description_1": "Provides the most convenient onboarding process for users. Wallet creation is completed with just social login.",
+      "title_2": "Free from KMS",
+      "description_2": "Be free from key management.",
+      "title_3": "Cost Reduction",
+      "description_3": "Don't waste resources on wallet development.",
+      "title_4": "Trustworthy",
+      "description_4": "Powered by AhnLab's technological expertise."
+    },
+    "card_2": {
+      "title_1": "Dev-Friendly RESTful APIs, SDKs",
+      "description_1": "Easily integrate wallets with developer-friendly settings.",
+      "title_2": "One Account, One Balance, Any Chain",
+      "description_2": "Minimize user inconvenience and avoid gas fees by using one account across multiple services.",
+      "title_3": "Connect External Assets with Wallet Apps",
+      "description_3": "Easily integrate wallets with developer-friendly settings.",
+      "title_4": "Detect Suspicious Transactions",
+      "description_4": "Easily integrate wallets with developer-friendly settings."
+    }
+  },
+  "supported_networks": {
+    "title": "Supported Networks"
+  },
+  "what_your_users_can_do": {
+    "title": "What Your Users Can Do?",
+    "title_1": "Simple Onboarding",
+    "description_1": "Complete wallet creation in 5 seconds with social login.",
+    "title_2": "Wallet",
+    "description_2": "Manage various tokens from different chains in one place.",
+    "title_3": "Swap",
+    "description_3": "Use free EVM swaps with services like 1inch and others.",
+    "title_4": "NFTs",
+    "description_4": "Receive, send, and utilize various NFTs and SBTs."
+  },
+  "what_you_can_do": {
+    "title": "What You Can Do?",
+    "title_1": "Wallet User Statistics",
+    "description_1": "Analyze user data from the console.",
+    "title_2": "Dedicated Dev Team Support",
+    "description_2": "Get dedicated support through a private Slack channel.",
+    "title_3": "NFT Airdrop",
+    "description_3": "Conduct effective marketing campaigns with simple airdrops.",
+    "title_4": "DApp Marketing",
+    "description_4": "Expand user base through business partnerships and marketing strategies."
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "description": "Easily integrate wallets with developer-friendly settings.",
+    "questions": {
+      "question_1": "What is T Wallet?",
+      "answer_1": "T Wallet is a digital wallet based on blockchain technology.",
+      "question_2": "I lost my OTP.",
+      "answer_2": "Contact customer support to reset your OTP.",
+      "question_3": "I want to use biometric authentication.",
+      "answer_3": "You can enable biometric authentication in the app settings.",
+      "question_4": "I want to connect ABC Wallet to various DApps like OpenSea.",
+      "answer_4": "To link ABC Wallet, activate DApp connection in the settings menu.",
+      "question_5": "What is an NFT?",
+      "answer_5": "NFTs are unique digital assets protected by blockchain technology."
+    }
+  },
+  "bottom": {
+    "title": "Sustainable Wallet Solution",
+    "description": "by AhnLab Blockchain Company",
+    "button": "Contact Us"
+  }
+}

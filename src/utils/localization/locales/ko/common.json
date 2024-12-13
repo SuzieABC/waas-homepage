@@ -1,4 +1,21 @@
 {
-  "home": "홈",
-  "about": "어바웃"
+  "footer": {
+    "service": {
+      "download": "다운로드",
+      "customer_support": "고객센터",
+      "terms_of_service": "이용약관",
+      "privacy_policy": "개인정보처리방침"
+    },
+    "connect": {
+      "facebook": "Facebook",
+      "x": "X",
+      "medium": "Medium",
+      "youtube": "YouTube"
+    },
+    "family": {
+      "about_us": "회사 소개",
+      "abc_waas": "ABC WaaS",
+      "bic_scan": "BICScan"
+    }
+  }
 }

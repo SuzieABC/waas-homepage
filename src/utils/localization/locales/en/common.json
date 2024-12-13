@@ -1,4 +1,21 @@
 {
-    "home": "Home",
-    "about": "About"
+  "footer": {
+    "service": {
+      "download": "Download",
+      "customer_support": "Support",
+      "terms_of_service": "Terms and Conditions",
+      "privacy_policy": "Privacy Policy"
+    },
+    "connect": {
+      "facebook": "Facebook",
+      "x": "X",
+      "medium": "Medium",
+      "youtube": "YouTube"
+    },
+    "family": {
+      "about_us": "Company",
+      "abc_waas": "ABC WaaS",
+      "bic_scan": "BICScan"
+    }
   }
+}

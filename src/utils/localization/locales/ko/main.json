@@ -1,0 +1,74 @@
+{
+  "top": {
+    "title": "Build Web3 With Us"
+  },
+  "why_abc_waas": {
+    "title": "Why ABC WaaS?",
+    "card_1": {
+      "title_1": "간편한 온보딩",
+      "description_1": "유저에게 가장 편리한 온보딩 프로세스를 제공합니다. 소셜로그인 만으로 끝나는 지갑 생성.",
+      "title_2": "Free from KMS",
+      "description_2": "키관리에서 자유로워지세요",
+      "title_3": "Cost Reduction",
+      "description_3": "지갑 개발에 리소스를 낭비하지 마세요",
+      "title_4": "Trustworthy",
+      "description_4": "안랩의 기술 노하우"
+    },
+    "card_2": {
+      "title_1": "Dev Friendly RestFUL API, SDKs",
+      "description_1": "개발자 친화적인 세팅으로 손쉽게 지갑을 연동해 보세요.",
+      "title_2": "One Account, One Balance,Any Chain",
+      "description_2": "하나의 계정으로 여러 서비스들을 이용할 수 있기 때문에 유저의 불편함을 최소화할 수 있고, 가스비를 낭비하지 않아도 됩니다.",
+      "title_3": "지갑 앱과의 연결로 외부자산 연결 용이",
+      "description_3": "개발자 친화적인 세팅으로 손쉽게 지갑을 연동해 보세요.",
+      "title_4": "Detect Suspicious TX",
+      "description_4": "개발자 친화적인 세팅으로 손쉽게 지갑을 연동해 보세요."
+    }
+  },
+  "supported_networks": {
+    "title": "Supported Networks"
+  },
+  "what_your_users_can_do": {
+    "title": "What Your Users Can Do?",
+    "title_1": "간편한 온보딩",
+    "description_1": "소셜 로그인으로 5초만에 지갑 생성을 완료합니다.",
+    "title_2": "Wallet",
+    "description_2": "다양한 체인의 다양한 토큰들을 한번에 관리할 수 있습니다.",
+    "title_3": "Swap",
+    "description_3": "자유로운 EVM Swap을 이용할 수 있습니다. 1inch, ..또 뭐였더라.거기",
+    "title_4": "NFTs",
+    "description_4": "다양한 NFT 및 SBT를 받고 보내기, 그리고 사용하기. "
+  },
+  "what_you_can_do": {
+    "title": "What You Can Do?",
+    "title_1": "지갑 사용자 통계",
+    "description_1": "Console에서 사용자 데이터 분석",
+    "title_2": "Dev팀 밀착 지원 ",
+    "description_2": "전용 Slack 채널 생성 및 밀착 지원",
+    "title_3": "NFT 에어드랍",
+    "description_3": "간편한 에어드랍으로 효과적인 마케팅 캠페인 수행",
+    "title_4": "Dapp 마케팅",
+    "description_4": "비즈니스 파트너십을 통한 유저 확보 마케팅 전략"
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "description": "개발자 친화적인 세팅으로 손쉽게 지갑을 연동해 보세요.",
+    "questions": {
+      "question_1": "T wallet은 무엇인가요?",
+      "answer_1": "T wallet은 블록체인 기술을 기반으로 한 디지털 지갑입니다.",
+      "question_2": "OTP를 잃어버렸어요.",
+      "answer_2": "OTP를 재설정하려면 고객 센터에 문의하세요.",
+      "question_3": "생체인증을 사용하고 싶어요.",
+      "answer_3": "생체인증은 앱 설정에서 활성화할 수 있습니다.",
+      "question_4": "ABC 지갑으로 오픈씨(OpenSea) 등 다양한 DApp에 연결하고 싶어요.",
+      "answer_4": "ABC 지갑을 연동하려면 설정 메뉴에서 DApp 연결을 활성화하세요.",
+      "question_5": "NFT가 뭔가요?",
+      "answer_5": "NFT는 고유한 디지털 자산을 의미하며, 블록체인 기술로 보호됩니다."
+    }
+  },
+  "bottom": {
+    "title": "Sustainable Wallet Solution",
+    "description": "by AhnLab Blockchain Company",
+    "button": "도입문의"
+  }
+}

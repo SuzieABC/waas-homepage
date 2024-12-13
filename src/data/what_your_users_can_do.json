@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "what_your_users_can_do.title_1",
+    "description": "what_your_users_can_do.description_1"
+  },
+  {
+    "id": 2,
+    "title": "what_your_users_can_do.title_2",
+    "description": "what_your_users_can_do.description_2"
+  },
+  {
+    "id": 3,
+    "title": "what_your_users_can_do.title_3",
+    "description": "what_your_users_can_do.description_3"
+  },
+  {
+    "id": 4,
+    "title": "what_your_users_can_do.title_4",
+    "description": "what_your_users_can_do.description_4"
+  }
+]
