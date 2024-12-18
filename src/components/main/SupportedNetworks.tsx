@@ -1,22 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Engine, Render, World, Bodies, Runner, Body } from "matter-js";
+import {
+  Engine,
+  Render,
+  World,
+  Bodies,
+  Runner,
+  Mouse,
+  MouseConstraint,
+} from "matter-js";
+import useWindowWidth from "@/utils/localization/hooks/useWindowWidth";
 
-import aptos from "@/assets/images/SupportedNetworks/aptos_image.png";
-import arbitrum from "@/assets/images/SupportedNetworks/arbitrum_image.png";
-import avalanche from "@/assets/images/SupportedNetworks/avalanche_image.png";
-import bitcoin from "@/assets/images/SupportedNetworks/bitcoin_image.png";
-import bsc from "@/assets/images/SupportedNetworks/bsc_image.png";
-import ethereum from "@/assets/images/SupportedNetworks/ethereum_image.png";
-import fncy from "@/assets/images/SupportedNetworks/fncy_image.png";
-import kaia from "@/assets/images/SupportedNetworks/kaia_image.png";
-import mantle from "@/assets/images/SupportedNetworks/mantle_image.png";
-import oasys from "@/assets/images/SupportedNetworks/oasys_image.png";
-import polygon from "@/assets/images/SupportedNetworks/polygon_image.png";
-import taiko from "@/assets/images/SupportedNetworks/taiko_image.png";
-import wemix from "@/assets/images/SupportedNetworks/wemix_image.png";
-import xlayer from "@/assets/images/SupportedNetworks/x_layer_image.png";
+import aptos from "@/assets/images/supportedNetworks/aptos_image.png";
+import arbitrum from "@/assets/images/supportedNetworks/arbitrum_image.png";
+import avalanche from "@/assets/images/supportedNetworks/avalanche_image.png";
+import bitcoin from "@/assets/images/supportedNetworks/bitcoin_image.png";
+import bsc from "@/assets/images/supportedNetworks/bsc_image.png";
+import ethereum from "@/assets/images/supportedNetworks/ethereum_image.png";
+import fncy from "@/assets/images/supportedNetworks/fncy_image.png";
+import kaia from "@/assets/images/supportedNetworks/kaia_image.png";
+import mantle from "@/assets/images/supportedNetworks/mantle_image.png";
+import oasys from "@/assets/images/supportedNetworks/oasys_image.png";
+import polygon from "@/assets/images/supportedNetworks/polygon_image.png";
+import taiko from "@/assets/images/supportedNetworks/taiko_image.png";
+import wemix from "@/assets/images/supportedNetworks/wemix_image.png";
+import xlayer from "@/assets/images/supportedNetworks/x_layer_image.png";
 
 const icons = [
   aptos,
@@ -35,45 +44,52 @@ const icons = [
   xlayer,
 ];
 
+interface ExtendedMouse extends Mouse {
+  element: HTMLElement;
+  mousewheel: (e: Event) => void;
+  mousemove: (e: Event) => void;
+  mousedown: (e: Event) => void;
+  mouseup: (e: Event) => void;
+}
+
 export default function SupportedNetworks(): JSX.Element {
+  const { windowWidth, isMobile, isTablet, isDesktop } = useWindowWidth();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Intersection Observer로 화면에 들어올 때만 실행
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true); // 화면에 보이면 초기화
-        }
+        if (entries[0].isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 } // 10%가 보이면 트리거
+      { threshold: 0.1 }
     );
 
     const currentRef = containerRef.current;
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
   useEffect(() => {
     if (!isVisible) return;
+
     const wallThickness = 20;
-    const initialHeight = 640;
-    const initialIconSize = 75;
+    const initialHeight = isMobile ? 600 : isTablet ? 500 : 620;
+    const initialIconSize = isMobile || isTablet ? 35 : 75;
+
     const engine = Engine.create();
-    let render: Render | null = null;
-    let iconBodies: Body[] = [];
+    const dynamicPadding = isMobile || isTablet ? 20 : 40; // 패딩 동적 적용
+    const width = Math.min(
+      window.innerWidth - dynamicPadding * 2,
+      1920 - dynamicPadding * 2
+    );
+    let render: Render;
 
-    const initializeWorld = () => {
-      const width = Math.min(window.innerWidth - 80, 1840);
-
+    const setupWorld = () => {
       render = Render.create({
         element: containerRef.current as HTMLElement,
         engine: engine,
@@ -82,10 +98,11 @@ export default function SupportedNetworks(): JSX.Element {
           height: initialHeight,
           background: "#181821",
           wireframes: false,
-          pixelRatio: 1,
+          pixelRatio: 2,
         },
       });
 
+      // 벽과 바닥 추가
       const floor = Bodies.rectangle(
         width / 2,
         initialHeight,
@@ -96,8 +113,14 @@ export default function SupportedNetworks(): JSX.Element {
           render: { visible: false },
         }
       );
+
+      const ceiling = Bodies.rectangle(width / 2, 0, width, wallThickness, {
+        isStatic: true,
+        render: { visible: false },
+      });
+
       const leftWall = Bodies.rectangle(
-        wallThickness / 2,
+        0,
         initialHeight / 2,
         wallThickness,
         initialHeight,
@@ -107,7 +130,7 @@ export default function SupportedNetworks(): JSX.Element {
         }
       );
       const rightWall = Bodies.rectangle(
-        width - wallThickness / 2,
+        width,
         initialHeight / 2,
         wallThickness,
         initialHeight,
@@ -117,116 +140,104 @@ export default function SupportedNetworks(): JSX.Element {
         }
       );
 
-      iconBodies = icons.map((icon) => {
-        const x = Math.random() * width;
-        const y = Math.random() * -200;
-
-        return Bodies.circle(x, y, initialIconSize, {
-          restitution: 1,
+      // 아이콘 추가
+      const iconBodies = icons.map((icon) =>
+        Bodies.circle(Math.random() * width, 50, initialIconSize, {
+          restitution: 0.5,
+          // friction: 0.1,
+          // frictionAir: 0.02, // 공기저항
           render: {
             sprite: {
               texture: icon.src,
-              xScale: 0.3,
-              yScale: 0.3,
+              xScale: isMobile || isTablet ? 0.15 : 0.33,
+              yScale: isMobile || isTablet ? 0.15 : 0.33,
             },
           },
-        });
+        })
+      );
+
+      World.add(engine.world, [
+        floor,
+        ceiling,
+        leftWall,
+        rightWall,
+        ...iconBodies,
+      ]);
+
+      // 마우스 드래그 추가
+      const mouse = Mouse.create(render.canvas) as ExtendedMouse;
+
+      // 터치 스크롤을 허용하기 위해 Matter.js의 touch 이벤트 제거
+      mouse.element.removeEventListener("touchmove", mouse.mousemove);
+      mouse.element.removeEventListener("touchstart", mouse.mousedown);
+      mouse.element.removeEventListener("touchend", mouse.mouseup);
+      mouse.element.removeEventListener("wheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse,
+        constraint: { stiffness: 0.2, render: { visible: false } },
       });
 
-      World.add(engine.world, [floor, leftWall, rightWall, ...iconBodies]);
+      // Matter.js가 추가하는 wheel 이벤트 제거 (스크롤 허용)
+      mouse.element.removeEventListener("wheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
+      // CSS touch-action 설정으로 터치 이벤트 허용
+      render.canvas.style.touchAction = "auto";
+
+      World.add(engine.world, mouseConstraint);
+
+      // 실행
       Render.run(render);
       const runner = Runner.create();
       Runner.run(runner, engine);
     };
 
-    const resizeHandler = () => {
-      const newWidth = Math.min(window.innerWidth - 80, 1840);
-
-      World.clear(engine.world, false);
-      iconBodies = icons.map((icon) => {
-        const x = Math.random() * newWidth;
-        const y = Math.random() * -200;
-
-        return Bodies.circle(x, y, initialIconSize, {
-          restitution: 1,
-          render: {
-            sprite: {
-              texture: icon.src,
-              xScale: 0.3,
-              yScale: 0.3,
-            },
-          },
-        });
-      });
-
-      const floor = Bodies.rectangle(
-        newWidth / 2,
-        initialHeight,
-        newWidth,
-        wallThickness,
-        {
-          isStatic: true,
-          render: { visible: false },
-        }
-      );
-      const leftWall = Bodies.rectangle(
-        wallThickness / 2,
-        initialHeight / 2,
-        wallThickness,
-        initialHeight,
-        {
-          isStatic: true,
-          render: { visible: false },
-        }
-      );
-      const rightWall = Bodies.rectangle(
-        newWidth - wallThickness / 2,
-        initialHeight / 2,
-        wallThickness,
-        initialHeight,
-        {
-          isStatic: true,
-          render: { visible: false },
-        }
-      );
-
-      World.add(engine.world, [floor, leftWall, rightWall, ...iconBodies]);
-
-      if (render) {
-        render.canvas.width = newWidth;
-        render.canvas.height = initialHeight;
-        render.options.width = newWidth;
-        render.options.height = initialHeight;
-      }
-    };
-
-    initializeWorld();
-    window.addEventListener("resize", resizeHandler);
+    setupWorld();
 
     return () => {
+      // 리소스 정리
       if (render) {
         Render.stop(render);
         Engine.clear(engine);
         World.clear(engine.world, true);
         render.canvas.remove();
-        render.textures = {};
       }
-      window.removeEventListener("resize", resizeHandler);
     };
-  }, [isVisible]);
+  }, [isVisible, isMobile, isTablet, windowWidth]);
 
   return (
-    <div className="px-[40px]">
-      <h1 className="text-[60px]">Supported Networks</h1>
+    <div
+      className={`${
+        isMobile
+          ? "px-[20px] pt-[80px]"
+          : isTablet
+          ? "px-[20px] pt-[100px]"
+          : isDesktop
+          ? "px-[40px] pt-[120px]"
+          : "px-[40px] pt-[240px]"
+      }`}
+    >
+      <h1
+        className={`${
+          isMobile
+            ? "text-[28px] mb-[40px]"
+            : isTablet
+            ? "text-[32px] text-center mb-[58px]"
+            : "text-[60px] mb-[80px]"
+        }`}
+      >
+        Supported Networks
+      </h1>
       <div
         ref={containerRef}
         style={{
-          maxWidth: "1920px",
-          margin: "80px 0px 240px",
+          width: "100%",
+          height: isMobile || isTablet ? "600px" : "620px",
+          borderRadius: "20px",
           overflow: "hidden",
           position: "relative",
-          borderRadius: "40px",
         }}
       ></div>
     </div>
