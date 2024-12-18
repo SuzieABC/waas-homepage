@@ -1,22 +1,22 @@
 [
   {
-    "id": "why_abc_waas_1",
+    "id": 1,
     "title": "why_abc_waas.card_2.title_1",
-    "description": "why_abc_waas.card_1.description_1"
+    "description": "why_abc_waas.card_2.description_1"
   },
   {
-    "id": "why_abc_waas_2",
+    "id": 2,
     "title": "why_abc_waas.card_2.title_2",
-    "description": "why_abc_waas.card_1.description_2"
+    "description": "why_abc_waas.card_2.description_2"
   },
   {
-    "id": "why_abc_waas_3",
+    "id": 3,
     "title": "why_abc_waas.card_2.title_3",
-    "description": "why_abc_waas.card_1.description_3"
+    "description": "why_abc_waas.card_2.description_3"
   },
   {
-    "id": "why_abc_waas_4",
+    "id": 4,
     "title": "why_abc_waas.card_2.title_4",
-    "description": "why_abc_waas.card_1.description_4"
+    "description": "why_abc_waas.card_2.description_4"
   }
 ]

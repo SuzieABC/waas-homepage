@@ -1,6 +1,8 @@
 {
   "top": {
-    "title": "Build Web3 With Us"
+    "title_1": "Build",
+    "title_2": "Web3",
+    "title_3": "With Us"
   },
   "why_abc_waas": {
     "title": "Why ABC WaaS?",
@@ -15,7 +17,7 @@
       "description_4": "Powered by AhnLab's technological expertise."
     },
     "card_2": {
-      "title_1": "Dev-Friendly RESTful APIs, SDKs",
+      "title_1": "Dev Friendly \nRestFUL API, SDKs",
       "description_1": "Easily integrate wallets with developer-friendly settings.",
       "title_2": "One Account, One Balance, Any Chain",
       "description_2": "Minimize user inconvenience and avoid gas fees by using one account across multiple services.",
@@ -29,7 +31,7 @@
     "title": "Supported Networks"
   },
   "what_your_users_can_do": {
-    "title": "What Your Users Can Do?",
+    "title": "What Your Users \nCan Do?",
     "title_1": "Simple Onboarding",
     "description_1": "Complete wallet creation in 5 seconds with social login.",
     "title_2": "Wallet",
@@ -40,7 +42,7 @@
     "description_4": "Receive, send, and utilize various NFTs and SBTs."
   },
   "what_you_can_do": {
-    "title": "What You Can Do?",
+    "title": "What You \nCan Do?",
     "title_1": "Wallet User Statistics",
     "description_1": "Analyze user data from the console.",
     "title_2": "Dedicated Dev Team Support",
@@ -51,7 +53,7 @@
     "description_4": "Expand user base through business partnerships and marketing strategies."
   },
   "FAQ": {
-    "title": "Frequently Asked Questions",
+    "title": "Frequently \nAsked Questions",
     "description": "Easily integrate wallets with developer-friendly settings.",
     "questions": {
       "question_1": "What is T Wallet?",
