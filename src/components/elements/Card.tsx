@@ -1,23 +1,46 @@
-import image from "@/assets/images/card_image.png";
+import image from "@/assets/images/why_abc_1_image.png";
 import Image from "next/image";
+import useWindowWidth from "@/utils/localization/hooks/useWindowWidth";
 
 interface CardProps {
   title: string;
   description: string;
+  locale: string;
 }
-export default function Card({ title, description }: CardProps) {
+export default function Card({ title, description, locale }: CardProps) {
+  const { isMobile, isTablet, isDesktop } = useWindowWidth();
   return (
-    <div className="p-[40px] border flex-1 rounded-3xl bg-gradient-to-b from-[#b4bbff] via-[#d1e0ff] to-white text-black">
+    <div
+      className={`flex flex-col flex-1 rounded-3xl bg-gradient-to-b from-[#b4bbff] via-[#d1e0ff] to-white text-black ${
+        isMobile || isTablet
+          ? "gap-[24px] p-[24px]"
+          : isDesktop
+          ? "gap-[36px] p-[40px]"
+          : "gap-[80px] p-[40px]"
+      }`}
+    >
       <Image
         src={image}
         alt="card_image"
-        width={100}
-        height={100}
-        className="mb-[80px]"
+        width={isMobile ? 64 : isTablet ? 80 : isDesktop ? 100 : 100}
       />
-      <div className="h-[180px]">
-        <p className="text-[28px] mb-[8px]">{title}</p>
-        <span className="text-[20px]">{description}</span>
+      <div className="min-h-[100px]">
+        <p
+          className={`mb-[8px] ${
+            isMobile || isTablet ? "text-[20px]" : "text-[28px]"
+          } ${
+            locale === "ko" ? "font-pretendardSemibold" : "font-dmSansSemibold"
+          }`}
+        >
+          {title}
+        </p>
+        <span
+          className={`${isMobile || isTablet ? "text-[16px]" : "text-[20px]"} ${
+            locale === "ko" ? "font-pretendardRegular" : "font-dmSansRegular"
+          }`}
+        >
+          {description}
+        </span>
       </div>
     </div>
   );
