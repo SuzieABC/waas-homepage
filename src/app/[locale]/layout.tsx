@@ -7,7 +7,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main className="max-w-[1920px] min-w-[320px] mx-auto">{children}</main>
+      <main className="max-w-[1920px] min-w-[320px] mx-auto overflow-x-hidden">
+        {children}
+      </main>
       <Footer />
     </>
   );
