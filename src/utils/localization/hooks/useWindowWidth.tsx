@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useWindowWidth = () => {
-  const [windowWidth, setWindowWidth] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const [deviceType, setDeviceType] = useState({
     isMobile: false,
@@ -21,15 +19,14 @@ const useWindowWidth = () => {
       clearTimeout(timeoutId);
 
       timeoutId = setTimeout(() => {
-        const width = window.innerWidth;
+        const width = document.documentElement.clientWidth;
         setWindowWidth(width);
 
-        // Update device type based on width
         setDeviceType({
           isMobile: width < 700,
-          isTablet: width >= 700 && width < 1024,
-          isDesktop: width >= 1024 && width < 1440,
-          isLargeDesktop: width >= 1440,
+          isTablet: width >= 700 && width < 1440,
+          isDesktop: width >= 1440 && width < 1920,
+          isLargeDesktop: width >= 1920,
         });
       }, 150);
     };
