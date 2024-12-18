@@ -13,7 +13,7 @@ export default function ChangeLocale() {
   const dropdownRef = useRef<HTMLDivElement>(null); // 드롭다운을 감지할 ref
   const LANGUAGES = [
     { code: "ko", label: "한국어" },
-    { code: "en", label: "English" },
+    { code: "en", label: "ENGLISH" },
   ];
 
   const handleLocaleChange = (locale: string) => {
@@ -37,7 +37,7 @@ export default function ChangeLocale() {
       {/* 드롭다운 버튼 (이미지 클릭) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-[40px] h-[40px]"
+        className="flex items-center justify-center w-[40px] h-[40px] p-[8px]"
       >
         <Image
           src={worldIcon}
@@ -48,14 +48,17 @@ export default function ChangeLocale() {
 
       {/* 드롭다운 메뉴 */}
       {isOpen && (
-        <ul className="absolute mt-2 bg-white border rounded shadow-md text-black">
-          {LANGUAGES.map((item) => (
+        <ul className="absolute mt-2 bg-white border rounded-[12px] shadow-md text-black px-[12px] right-0">
+          {LANGUAGES.map((item, index) => (
             <li
               key={item.code}
               onClick={() => handleLocaleChange(item.code)}
-              className="flex items-center gap-2 p-2 cursor-pointer"
+              className="flex flex-col items-center justify-center gap-2 cursor-pointer my-[12px]"
             >
               <span>{item.label}</span>
+              {index === 0 && (
+                <div className="h-[1px] bg-black/20 w-full"></div>
+              )}
             </li>
           ))}
         </ul>
