@@ -28,9 +28,18 @@ const InquiryForm = ({ locale }: InquryFormProps) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true); // 제출 상태로 전환
+    const response = await fetch("/api/slack", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    if (response.ok) {
+      setIsSubmitted(true); // 제출 상태로 전환
+    } else {
+      alert("Failed to send data to Slack");
+    }
   };
 
   return (
