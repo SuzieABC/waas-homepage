@@ -34,7 +34,7 @@ export default function Header() {
     } else {
       setIsVisible(true);
     }
-    setLastScrollY(currentScrollY);
+    setLastScrollY(currentScrollY + 10);
   };
 
   useEventListener("scroll", handleScrollBackground);
