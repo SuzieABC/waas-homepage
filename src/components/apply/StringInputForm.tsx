@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import TextInput from "@/components/elements/TextInput";
+import TextArea from "@/components/elements/TextArea";
 
-interface InquryFormProps {
+interface InquiryFormProps {
   locale: string;
 }
-const InquiryForm = ({ locale }: InquryFormProps) => {
+
+const InquiryForm = ({ locale }: InquiryFormProps) => {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -15,7 +18,30 @@ const InquiryForm = ({ locale }: InquryFormProps) => {
     inquiry: "",
     agreement: false,
   });
-  const [isSubmitted, setIsSubmitted] = useState(false); // 상태 추가: 제출 여부
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const fields: {
+    label: string;
+    type: string;
+    name: keyof typeof formData;
+    required?: boolean;
+  }[] = [
+    { label: "Email", type: "email", name: "email", required: true },
+    { label: "Name", type: "text", name: "name", required: true },
+    {
+      label: "Organization",
+      type: "text",
+      name: "organization",
+      required: true,
+    },
+    { label: "Phone", type: "tel", name: "phone", required: true },
+  ];
+
+  useEffect(() => {
+    if (isSubmitted) {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // 최상단 이동
+    }
+  }, [isSubmitted]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,15 +56,23 @@ const InquiryForm = ({ locale }: InquryFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("/api/slack", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-      setIsSubmitted(true); // 제출 상태로 전환
-    } else {
-      alert("Failed to send data to Slack");
+    if (isSubmitted) return;
+    setIsSubmitted(true);
+
+    try {
+      const response = await fetch("/api/slack", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        alert("Failed to send data to Slack");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitted(true);
     }
   };
 
@@ -55,59 +89,32 @@ const InquiryForm = ({ locale }: InquryFormProps) => {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="p-4">
-          <div className="mb-4">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
+          {fields.map((field) => (
+            <TextInput
+              key={field.name}
+              label={field.label}
+              type={field.type}
+              name={field.name}
+              value={
+                field.type === "checkbox"
+                  ? undefined
+                  : (formData[field.name] as string)
+              }
+              checked={
+                field.type === "checkbox"
+                  ? (formData[field.name] as boolean)
+                  : undefined
+              }
               onChange={handleChange}
-              className="border p-2 w-full rounded"
-              required
+              required={field.required}
             />
-          </div>
-          <div className="mb-4">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="border p-2 w-full rounded"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label>Organization</label>
-            <input
-              type="text"
-              name="organization"
-              value={formData.organization}
-              onChange={handleChange}
-              className="border p-2 w-full rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label>Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="border p-2 w-full rounded"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label>Inquiry</label>
-            <textarea
-              name="inquiry"
-              value={formData.inquiry}
-              onChange={handleChange}
-              className="border p-2 w-full rounded"
-              rows={4}
-            />
-          </div>
+          ))}
+          <TextArea
+            label="Inquiry"
+            name="inquiry"
+            value={formData.inquiry}
+            onChange={handleChange}
+          />
           <div className="mb-4">
             <label className="flex items-center">
               <input
@@ -115,14 +122,18 @@ const InquiryForm = ({ locale }: InquryFormProps) => {
                 name="agreement"
                 checked={formData.agreement}
                 onChange={handleChange}
-                className="mr-2"
+                className="mr-2 text-black"
                 required
               />
               개인정보 수집 및 이용에 동의합니다.
             </label>
           </div>
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-            제출하기
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded"
+            disabled={isSubmitted}
+          >
+            {isSubmitted ? "제출 중..." : "제출하기"}
           </button>
         </form>
       )}
