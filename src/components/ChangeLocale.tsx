@@ -2,11 +2,13 @@
 
 import { useState, useRef } from "react";
 import { useRouter, useSelectedLayoutSegments } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import worldIcon from "@/assets/icons/world_light.png";
 import useEventListener from "@/utils/localization/hooks/useEventListener";
 
 export default function ChangeLocale() {
+  const pathname = usePathname();
   const router = useRouter();
   const urlSegments = useSelectedLayoutSegments();
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +55,15 @@ export default function ChangeLocale() {
             <li
               key={item.code}
               onClick={() => handleLocaleChange(item.code)}
-              className="flex flex-col items-center justify-center gap-2 cursor-pointer my-[12px]"
+              className={`flex flex-col items-center justify-center gap-2 cursor-pointer my-[12px] ${
+                pathname === "/" && index === 0
+                  ? "font-pretendardSemibold"
+                  : "font-dmSansRegular"
+              } ${
+                pathname === "/en" && index === 1
+                  ? "font-dmSansSemibold"
+                  : "font-pretendardRegular"
+              }`}
             >
               <span>{item.label}</span>
               {index === 0 && (
