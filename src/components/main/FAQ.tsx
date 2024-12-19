@@ -36,6 +36,8 @@ export default function FAQ() {
           } flex bg-[#3140F1] rounded-[40px] py-[60px] ${
             isMobile || isTablet
               ? "flex-col mx-[20px] px-[20px]"
+              : isDesktop
+              ? "mx-[40px] px-[80px] gap-[79px]"
               : "mx-[40px] px-[80px] gap-[200px]"
           }`}
         >
@@ -45,7 +47,7 @@ export default function FAQ() {
                 isMobile || isTablet
                   ? "text-[34px] leading-[40.8px]"
                   : isDesktop
-                  ? "text-[48px] leading-[62.4px] whitespace-pre-wrap"
+                  ? "text-[48px] leading-[62.4px] whitespace-pre"
                   : "text-[48px] leading-[62.4px] whitespace-pre"
               }`}
             >
@@ -68,7 +70,7 @@ export default function FAQ() {
             {faqData.map((item, index) => (
               <div key={item.id}>
                 <div
-                  className={`flex justify-between items-center cursor-pointer rounded-lg `}
+                  className={`flex justify-between items-center cursor-pointer rounded-lg`}
                   onClick={() => toggleFAQ(index)}
                 >
                   <span
@@ -105,7 +107,7 @@ export default function FAQ() {
                     {t(item.answer)}
                   </div>
                 )}
-                <div className="bg-white h-[10px] mt-[20px] transform scale-y-[0.05]"></div>
+                <div className="bg-white h-[6.5px] mt-[20px] transform scale-y-[0.1]"></div>
               </div>
             ))}
           </div>
