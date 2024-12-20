@@ -92,8 +92,8 @@ export default function WhyABCWaaS() {
                     locale === "ko" ? "font-pretendardBold" : "font-dmSansBold"
                   } whitespace-pre-wrap ${
                     isMobile || isTablet
-                      ? "text-[34px] leading-[44.2px] pb-[16px]"
-                      : "text-[64px] leading-[74.24px] pb-[24px]"
+                      ? "text-[34px] leading-[44.2px] pb-[16px] tracking-[-0.96px]"
+                      : "text-[64px] leading-[74.24px] pb-[24px] tracking-[-1.92px]"
                   }`}
                 >
                   {t(data.title)}
