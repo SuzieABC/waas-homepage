@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import useWindowWidth from "@/utils/localization/hooks/useWindowWidth";
 import logo from "@/assets/images/header_logo_image.png";
 import { useState, useEffect } from "react";
@@ -8,9 +9,62 @@ import { useState, useEffect } from "react";
 export default function Footer() {
   const { isMobile, isTablet } = useWindowWidth();
   const footer = {
-    Company: ["About Us", "Careers", "Press"],
-    Docs: ["Whitepaper", "FAQ", "API Docs"],
-    Connect: ["Twitter", "Facebook", "LinkedIn"],
+    Family: [
+      {
+        name: "",
+        url: `https://ahnlabblockchain.company/`,
+        id: "footer_company",
+      },
+      {
+        name: "",
+        url: `https://abcwaas.com/`,
+        id: "footer_abcwaas",
+      },
+      {
+        name: "",
+        url: `https://bicscan.io/`,
+        id: "footer_bicscan",
+      },
+    ],
+    Docs: [
+      {
+        name: "",
+        url: `https://ahnlabblockchain.company/`,
+        id: "footer_company",
+      },
+      {
+        name: "",
+        url: `https://abcwaas.com/`,
+        id: "footer_abcwaas",
+      },
+      {
+        name: "",
+        url: `https://bicscan.io/`,
+        id: "footer_bicscan",
+      },
+    ],
+    Connect: [
+      {
+        name: "Facebook",
+        url: "https://www.facebook.com/abcwallet2022",
+        id: "footer_facebook",
+      },
+      {
+        name: "X",
+        url: "https://x.com/AhnLab_ABC",
+        id: "footer_x",
+      },
+      {
+        name: "Medium",
+        url: "https://medium.com/@AhnLabBlockchainCompany",
+        id: "footer_medium",
+      },
+      {
+        name: "YouTube",
+        url: "https://www.youtube.com/@ABC_Wallet",
+        id: "footer_youtube",
+      },
+    ],
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -50,25 +104,26 @@ export default function Footer() {
               {Object.entries(footer).map(([key, items]) => (
                 <div
                   key={key}
-                  className="flex flex-col gap-[10px] min-w-[200px]"
+                  className="flex flex-col gap-[12px] min-w-[200px]"
                 >
-                  <span className="text-[#ffffff] font-dmSansSemibold pb-[12px]">
+                  <span className="text-[#ffffff] font-dmSansSemibold">
                     {key}
                   </span>
                   {items.map((item) => (
-                    <span
-                      key={item}
-                      className="text-[#cccccc] font-dmSansRegular"
+                    <Link
+                      href={item.url}
+                      key={item.id}
+                      className="text-[#cccccc] font-dmSansRegular py-[10px] text-[15px]"
                     >
-                      {item}
-                    </span>
+                      {item.name}
+                    </Link>
                   ))}
                 </div>
               ))}
             </div>
           </div>
           <p
-            className={`text-[#888888] mt-[20px] ${
+            className={`text-[#888888] mt-[20px] tracking-[0.11px] ${
               isMobile && "text-[11px] mt-[36px] px-[8px] font-dmSansRegular"
             }`}
           >

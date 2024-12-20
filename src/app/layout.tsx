@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import "@/styles/globals.css";
 import { headers } from "next/headers";
-
+import "@/styles/globals.css";
 import {
   geistSans,
   geistMono,
@@ -57,6 +56,7 @@ export default function RootLayout({
     DMSansSemibold.variable,
     DMSansBold.variable,
   ].join(" ");
+
   return (
     <html lang="en">
       <head>
