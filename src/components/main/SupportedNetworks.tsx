@@ -77,7 +77,7 @@ export default function SupportedNetworks(): JSX.Element {
   useEffect(() => {
     if (!isVisible) return;
 
-    const wallThickness = 20;
+    const wallThickness = 50;
     const initialHeight = isMobile ? 600 : isTablet ? 500 : 620;
     const initialIconSize = isMobile || isTablet ? 35 : 75;
 
@@ -218,14 +218,15 @@ export default function SupportedNetworks(): JSX.Element {
           ? "px-[40px] pt-[120px]"
           : "px-[40px] pt-[240px]"
       }`}
+      style={{ visibility: windowWidth ? "visible" : "hidden" }}
     >
       <h1
         className={`${
           isMobile
-            ? "text-[28px] mb-[40px]"
+            ? "text-[28px] mb-[40px] tracking-[-1.02px]"
             : isTablet
             ? "text-[32px] text-center mb-[58px]"
-            : "text-[60px] mb-[80px]"
+            : "text-[60px] mb-[80px] tracking-[-0.6px]"
         }`}
       >
         Supported Networks
