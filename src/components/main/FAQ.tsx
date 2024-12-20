@@ -45,10 +45,10 @@ export default function FAQ() {
             <h2
               className={`font-dmSansMedium ${
                 isMobile || isTablet
-                  ? "text-[34px] leading-[40.8px]"
+                  ? "text-[34px] leading-[40.8px] tracking-[-1.02px]"
                   : isDesktop
-                  ? "text-[48px] leading-[62.4px] whitespace-pre"
-                  : "text-[48px] leading-[62.4px] whitespace-pre"
+                  ? "text-[48px] leading-[62.4px] whitespace-pre tracking-[-0.48px]"
+                  : "text-[48px] leading-[62.4px] whitespace-pre tracking-[-0.48px]"
               }`}
             >
               {t("FAQ.title")}

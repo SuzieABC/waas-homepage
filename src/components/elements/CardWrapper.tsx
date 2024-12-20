@@ -50,12 +50,12 @@ export default function CardWrapper({ data, title }: CardWrapperProps) {
           <h2
             className={`font-dmSansMedium ${
               isMobile
-                ? "text-[34px] leading-[44.2px] whitespace-pre"
+                ? "text-[34px] leading-[44.2px] whitespace-pre tracking-[-1.02px]"
                 : isTablet
-                ? "text-[36px] leading-[46.8px] text-center"
+                ? "text-[36px] leading-[46.8px] text-center tracking-[-1.02px]"
                 : isDesktop
-                ? "text-[60px] leading-[78px]"
-                : "text-[60px] leading-[78px]"
+                ? "text-[60px] leading-[78px] tracking-[-0.6px]"
+                : "text-[60px] leading-[78px] tracking-[-0.6px]"
             }`}
           >
             {title}

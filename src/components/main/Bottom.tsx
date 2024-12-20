@@ -26,8 +26,8 @@ export default function Bottom({ locale }: BottomProps) {
           <h1
             className={`${
               isMobile || isTablet
-                ? "text-[40px] leading-[47.2px] mb-[20px]"
-                : "text-[60px] leading-[78px] mb-[16px]"
+                ? "text-[40px] leading-[47.2px] mb-[20px] tracking-[-0.4px]"
+                : "text-[60px] leading-[78px] mb-[16px] tracking-[-0.6px]"
             } text-center font-dmSansSemibold`}
           >
             Sustainable
